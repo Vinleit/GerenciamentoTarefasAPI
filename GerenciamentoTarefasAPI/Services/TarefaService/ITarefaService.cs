@@ -10,10 +10,10 @@ namespace GerenciamentoTarefasAPI.Services.TarefaService
 
         Task<List<Tarefa>> AddTask(Tarefa task);
 
-        Task<List<Tarefa>?> UpdateTask(int id, Tarefa request);
+        Task<List<Tarefa>?> UpdateTask(Tarefa request);
 
         Task<List<Tarefa>?> DeleteTask(int id);
 
-        Task<Tarefa?> MarkTaskAsCompleted(int id);
+        Task<List<Tarefa>?> MarkTaskAsCompleted(int id);
     }
 }

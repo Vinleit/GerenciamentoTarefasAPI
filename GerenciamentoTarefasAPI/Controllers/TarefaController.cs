@@ -36,7 +36,7 @@ namespace GerenciamentoTarefasAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("all")]
+        [HttpGet]
         public async Task<ActionResult<List<Tarefa>>> GetAllTasks()
         {
             var result = await _tarefaService.GetAllTasks();
@@ -47,7 +47,7 @@ namespace GerenciamentoTarefasAPI.Controllers
         public async Task<ActionResult<Tarefa?>> GetTask(int id)
         {
             var result = await _tarefaService.GetTask(id);
-            if(result is null)
+            if (result is null)
             {
                 return NotFound("Tarefa não encontrada!");
             }
@@ -56,11 +56,11 @@ namespace GerenciamentoTarefasAPI.Controllers
         }
 
         [HttpPatch("complete/{id}")]
-        public async Task<ActionResult<Tarefa?>> MarkTaskAsCompleted(int id)
+        public async Task<ActionResult<List<Tarefa>?>> MarkTaskAsCompleted(int id)
         {
             var result = await _tarefaService.MarkTaskAsCompleted(id);
 
-            if(result is null)
+            if (result is null)
             {
                 return NotFound("Tarefa não encontrada!");
             }
@@ -68,10 +68,10 @@ namespace GerenciamentoTarefasAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("update/{id}")]
-        public async Task<ActionResult<List<Tarefa>?>> UpdateTask(int id, Tarefa request)
+        [HttpPut("update")]
+        public async Task<ActionResult<List<Tarefa>?>> UpdateTask(Tarefa request)
         {
-            var result = await _tarefaService.UpdateTask(id, request);
+            var result = await _tarefaService.UpdateTask(request);
             if (result is null)
             {
                 return NotFound("Tarefa não encontrada!");

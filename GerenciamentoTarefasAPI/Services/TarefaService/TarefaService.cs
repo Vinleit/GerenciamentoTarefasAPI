@@ -46,7 +46,7 @@ namespace GerenciamentoTarefasAPI.Services.TarefaService
         public async Task<Tarefa?> GetTask(int id)
         {
             var task = await _context.Tarefas.FindAsync(id);
-            if(task is null)
+            if (task is null)
             {
                 return null;
             }
@@ -54,7 +54,7 @@ namespace GerenciamentoTarefasAPI.Services.TarefaService
             return task;
         }
 
-        public async Task<Tarefa?> MarkTaskAsCompleted(int id)
+        public async Task<List<Tarefa>?> MarkTaskAsCompleted(int id)
         {
             var task = await _context.Tarefas.FindAsync(id);
 
@@ -66,12 +66,12 @@ namespace GerenciamentoTarefasAPI.Services.TarefaService
             task.IsCompleted = true;
 
             await _context.SaveChangesAsync();
-            return await _context.Tarefas.FindAsync(id);
+            return await _context.Tarefas.ToListAsync();
         }
 
-        public async Task<List<Tarefa>?> UpdateTask(int id, Tarefa request)
+        public async Task<List<Tarefa>?> UpdateTask(Tarefa request)
         {
-            var task = await _context.Tarefas.FindAsync(id);
+            var task = await _context.Tarefas.FindAsync(request.Id);
 
             if (task is null)
             {

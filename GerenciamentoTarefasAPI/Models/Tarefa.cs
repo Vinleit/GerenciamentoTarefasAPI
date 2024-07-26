@@ -10,7 +10,7 @@ namespace GerenciamentoTarefasAPI.Models
         [Required]
         public string Title { get; set; }
 
-        public string Description { get; set;} = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
         [Required]
         public DateTime CreationDate { get; set; } = DateTime.Now;
